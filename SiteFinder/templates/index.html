@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Site Data</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            color: black;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars if needed */
+        }
+        .container {
+            position: relative;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            z-index: 1; /* Ensure it stays above the fixed image */
+        }
+        .logo {
+            position: fixed; /* Change to fixed to keep it in place */
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            width: 150px; 
+            z-index: 0; /* Ensure it stays below the container */
+        }
+        .form-container {
+            background-color: #eeeeee; 
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 16px; 
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #a1343c;
+            border-color: #a1343c;
+            font-weight: 600;
+            border-radius: 25px; /* Curved button */
+        }
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary:active:focus {
+            background-color: #801c2a !important;
+            border-color: #801c2a !important;
+            box-shadow: none !important;
+        }
+        .card {
+            margin-top: 20px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .card-text {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+        .alert-warning {
+            font-weight: 600;
+            text-align: center;
+            border-radius: 20px;
+            border: 2px solid #a1343c;
+            background-color: #fddc6c;
+        }
+        .list-group-item {
+            padding: 15px 20px;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px;
+        }
+        .list-group-item:last-child {
+            margin-bottom: 0;
+        }
+        h1 {
+            font-weight: 600;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <img src="../static/Images/MicrosoftTeams-image.png" alt="Logo" class="logo"/>
+    <div class="container">
+        <h1 class="text-center mb-4">Site Information</h1>
+        <div class="form-container">
+            <form method="post" class="mb-4">
+                <div class="form-group">
+                    <label for="site_id">Site ID:</label>
+                    <input type="text" class="form-control" id="site_id" name="site_id" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </form>
+            {% if result %}
+                {% if result == "Site Not Found" %}
+                    <div class="alert alert-warning" role="alert">
+                        Site Not Found
+                    </div>
+                {% else %}
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Site ID:</strong> {{ result.site_id }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Validation Date:</strong> {{ result.validation_date }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <strong>GoLive Date:</strong> {{ result.go_live_date }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Closeout Package Date:</strong> {{ result.close_out_package_date }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Cancellation Date:</strong> {{ result.cancellation_date }}
+                            </div>
+                        </li>
+                    </ul>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@pop
